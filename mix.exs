@@ -2,29 +2,29 @@ defmodule Ryal.Mixfile do
   use Mix.Project
 
   def project do
-    [apps_path: "apps",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      apps_path: "apps",
+      build_embedded: Mix.env == :prod,
+      description: "An ecommerce library for elixir.",
+      deps: deps,
+      package: package,
+      start_permanent: Mix.env == :prod
+    ]
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:mydep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
-  #
-  # Type "mix help deps" for more examples and options.
-  #
-  # Dependencies listed here are available only for this project
-  # and cannot be accessed from applications inside the apps folder
   defp deps do
     []
   end
 
-  defp description do
-    "An ecommerce library for elixir."
+  defp package do
+    [
+      maintainers: ["Ben A. Morgan"],
+      licenses: ["MIT"],
+      links: %{"github" => "https://github.com/ryal/ryal"},
+      files: [
+        "mix.exs",
+        "README.md"
+      ]
+    ]
   end
 end
