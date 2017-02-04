@@ -1,6 +1,6 @@
 # Ryal
 
-**[rahy-uh l]**
+[**[rahy-uh l]**](http://www.dictionary.com/browse/ryal)
 
 noun
 
