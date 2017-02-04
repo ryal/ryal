@@ -23,4 +23,8 @@ defmodule Ryal.Mixfile do
   defp deps do
     []
   end
+
+  defp description do
+    "An ecommerce library for elixir."
+  end
 end
