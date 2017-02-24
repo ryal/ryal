@@ -9,11 +9,11 @@ defmodule Ryal.Core.TestCase do
   end
 
   setup do
-    Ecto.Adapters.SQL.Sandbox.mode(Ryal.Repo, :manual)
+    Ecto.Adapters.SQL.Sandbox.mode(Ryal.Core.Repo, :manual)
 
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Ryal.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Ryal.Core.Repo)
   end
 end
 
-Ryal.Repo.start_link
+Ryal.Core.Repo.start_link
 ExUnit.start()
