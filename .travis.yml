@@ -9,3 +9,5 @@ install:
   - mix deps.get
 before_script:
   - cd apps/ryal_core && mix db.reset
+script:
+  - mix test
