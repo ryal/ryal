@@ -1,7 +1,5 @@
 use Mix.Config
 
-config :ryal_core, ecto_repos: [Ryal.Repo]
-
 config :ryal_core, Ryal.Repo,
   adapter: Ecto.Adapters.Postgres,
   pool: Ecto.Adapters.SQL.Sandbox,
