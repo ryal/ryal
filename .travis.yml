@@ -8,5 +8,4 @@ install:
   - mix local.hex --force
   - mix deps.get
 before_script:
-  - export RYAL_DB_USER=postgres
-  - MIX_ENV=test cd apps/ryal_core && mix db.reset
+  - cd apps/ryal_core && mix db.reset
