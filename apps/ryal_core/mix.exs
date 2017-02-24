@@ -31,7 +31,7 @@ defmodule Ryal.Core.Mixfile do
   end
 
   def application do
-    [applications: [:ryal_core, :logger] ++ applications(Mix.env)]
+    [applications: [:logger] ++ applications(Mix.env)]
   end
 
   defp applications(:test), do: [:postgrex, :ecto]
