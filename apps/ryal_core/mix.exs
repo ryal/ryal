@@ -1,4 +1,4 @@
-defmodule Core.Mixfile do
+defmodule Ryal.Core.Mixfile do
   use Mix.Project
 
   def project do
