@@ -7,8 +7,8 @@ elixir:
 install:
   - mix local.hex --force
   - mix deps.get
-  - cd apps/ryal_core && mix deps.get
+  - cd apps/ryal_core && mix deps.get && cd ..
 before_script:
-  - cd apps/ryal_core && mix db.reset
+  - cd apps/ryal_core && mix db.reset && cd ..
 script:
   - mix test
