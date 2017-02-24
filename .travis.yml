@@ -6,4 +6,4 @@ elixir:
   - 1.4.0
 before_script:
   - export RYAL_DB_USER=postgres
-  - MIX_ENV=test mix db.reset
+  - MIX_ENV=test cd apps/ryal_core && mix db.reset
