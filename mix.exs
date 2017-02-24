@@ -12,8 +12,17 @@ defmodule Ryal.Mixfile do
     ]
   end
 
+  def application do
+    [applications: [:ryal_corem, :logger]]
+  end
+
   defp deps do
-    []
+    [
+      {:ecto, "~> 2.1"},
+      {:postgrex, "~> 0.13.0", optional: true},
+
+      {:ryal_core, path: "apps/ryal_core", from_umbrella: true, env: Mix.env, manager: :mix}
+    ]
   end
 
   defp package do
