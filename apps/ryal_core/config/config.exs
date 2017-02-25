@@ -7,3 +7,5 @@ config :ryal_core, Ryal.Core.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
   database: "ryal_#{Mix.env}",
   username: System.get_env("RYAL_DB_USER") || System.get_env("USER")
+
+import_config "#{Mix.env}.exs"
