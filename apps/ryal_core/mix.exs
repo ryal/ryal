@@ -33,14 +33,16 @@ defmodule Ryal.Core.Mixfile do
     [applications: [:logger] ++ applications(Mix.env)]
   end
 
-  defp applications(:test), do: [:postgrex, :ecto]
+  defp applications(:test), do: [:phoenix, :phoenix_ecto, :postgrex, :ecto]
   defp applications(_), do: []
 
   defp deps do
     [
+      {:phoenix, "~> 1.2.1"},
+      {:phoenix_ecto, "~> 3.2.1"},
       {:ecto, "~> 2.1"},
       {:ex_doc, "~> 0.14", only: :dev},
-      {:postgrex, "~> 0.13.0", optional: true}
+      {:postgrex, ">= 0.13.0", optional: true}
     ]
   end
 
