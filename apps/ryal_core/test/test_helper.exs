@@ -15,5 +15,5 @@ defmodule Ryal.Core.TestCase do
   end
 end
 
-Ryal.Core.Repo.start_link
+Ryal.Repo.start_link
 ExUnit.start()
