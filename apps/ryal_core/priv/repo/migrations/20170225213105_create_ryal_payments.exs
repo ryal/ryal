@@ -10,6 +10,6 @@ defmodule Ryal.Repo.Migrations.CreateRyalPayments do
       timestamps()
     end
 
-    create unique_index :ryal_payments, :amount
+    create unique_index :ryal_payments, :number
   end
 end
