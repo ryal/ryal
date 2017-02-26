@@ -15,7 +15,8 @@ defmodule Ryal.Core.Mixfile do
       start_permanent: Mix.env == :prod,
       package: package(),
       deps: deps(),
-      aliases: aliases()
+      aliases: aliases(),
+      compilers: compilers(Mix.env) ++ Mix.compilers
     ]
   end
 
@@ -33,16 +34,22 @@ defmodule Ryal.Core.Mixfile do
     [applications: [:logger] ++ applications(Mix.env)]
   end
 
-  defp applications(:test), do: [:phoenix, :phoenix_ecto, :postgrex, :ecto]
+  defp applications(:test), do: [:phoenix, :phoenix_ecto, :postgrex, :ecto, :dummy]
   defp applications(_), do: []
+
+  defp compilers(:test), do: [:phoenix]
+  defp compilers(_), do: []
 
   defp deps do
     [
-      {:phoenix, "~> 1.2.1"},
-      {:phoenix_ecto, "~> 3.2.1"},
+      {:dummy, path: "test/support/dummy", only: :test},
       {:ecto, "~> 2.1"},
       {:ex_doc, "~> 0.14", only: :dev},
-      {:postgrex, ">= 0.13.0", optional: true}
+      {:ja_serializer, "~> 0.11.1"},
+      {:phoenix, "~> 1.2.1"},
+      {:phoenix_ecto, "~> 3.2.1"},
+      {:postgrex, ">= 0.13.0", optional: true},
+      {:scrivener_ecto, "~> 1.1"}
     ]
   end
 
