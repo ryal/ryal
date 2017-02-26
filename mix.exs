@@ -13,7 +13,7 @@ defmodule Ryal.Mixfile do
   end
 
   def application do
-    [applications: [:ryal_corem, :logger]]
+    [applications: [:ryal_core, :logger]]
   end
 
   defp deps do
