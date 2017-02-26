@@ -9,6 +9,12 @@ defmodule Ryal.Web do
     end
   end
 
+  def query do
+    quote do
+      import Ecto.Query
+    end
+  end
+
   def controller do
     quote do
       use Phoenix.Controller
@@ -18,6 +24,7 @@ defmodule Ryal.Web do
       import Ecto
       import Ecto.Query
 
+      import Ryal.JsonRenderPlug
     end
   end
 
