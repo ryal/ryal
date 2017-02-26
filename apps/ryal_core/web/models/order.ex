@@ -6,6 +6,8 @@ defmodule Ryal.Order do
     field :state, :string, default: "cart"
     field :total, :decimal
 
+    has_many :payments, Ryal.Payment
+
     timestamps()
   end
 

@@ -6,6 +6,8 @@ defmodule Ryal.Payment do
     field :state, :string, default: "pending"
     field :amount, :decimal
 
+    belongs_to :order, Ryal.Order
+
     timestamps()
   end
 

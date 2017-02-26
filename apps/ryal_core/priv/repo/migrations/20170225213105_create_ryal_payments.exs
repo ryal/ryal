@@ -7,6 +7,8 @@ defmodule Ryal.Repo.Migrations.CreateRyalPayments do
       add :state, :string, default: "pending", null: false
       add :amount, :decimal, null: false
 
+      add :order_id, references(:ryal_orders), null: false
+
       timestamps()
     end
 
