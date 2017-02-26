@@ -18,8 +18,6 @@ defmodule Ryal.Web do
       import Ecto
       import Ecto.Query
 
-      import Ryal.Router.Helpers
-      import Ryal.Gettext
     end
   end
 
@@ -34,8 +32,6 @@ defmodule Ryal.Web do
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
-
-      import Ryal.Router.Helpers
     end
   end
 
