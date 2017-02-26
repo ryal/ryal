@@ -4,7 +4,7 @@ defmodule Ryal.Order do
   schema "ryal_orders" do
     field :number, :string
     field :state, :string, default: "cart"
-    field :total, :decimal
+    field :total, :decimal, default: 0.0
 
     has_many :payments, Ryal.Payment
 

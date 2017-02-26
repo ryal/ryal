@@ -5,7 +5,7 @@ defmodule Ryal.OrderTest do
 
   describe "generate_number/1" do
     test "will create a random payment number" do
-      changeset = Order.changeset(%Order{}, %{total: 10.00})
+      changeset = Order.changeset(%Order{})
       "R" <> numbers = changeset.changes.number
       assert String.length(numbers) == 9
     end
