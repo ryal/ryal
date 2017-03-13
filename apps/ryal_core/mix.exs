@@ -32,10 +32,10 @@ defmodule Ryal.Core.Mixfile do
   end
 
   def applications do
-    [:phoenix, :phoenix_ecto, :logger, :ecto] ++ applications(Mix.env)
+    [:phoenix, :phoenix_ecto, :logger, :ecto, :postgrex] ++ applications(Mix.env)
   end
 
-  defp applications(:test), do: [:postgrex, :dummy]
+  defp applications(:test), do: [:dummy]
   defp applications(_), do: []
 
   defp compilers(), do: [:phoenix]
