@@ -5,7 +5,7 @@ defmodule Dummy.Mixfile do
     [
       app: :dummy,
       config_path: "config/config.exs",
-      version: "0.0.0"
+      version: "1.0.0"
     ]
   end
 end
