@@ -24,9 +24,9 @@ defmodule Ryal.Core.Mixfile do
   defp aliases do
     [
       "db.reset": [
-        "ecto.drop",
-        "ecto.create",
-        "ecto.migrate"
+        "ecto.drop -r Dummy.Repo",
+        "ecto.create -r Dummy.Repo",
+        "ecto.migrate -r Dummy.Repo"
       ]
     ]
   end
