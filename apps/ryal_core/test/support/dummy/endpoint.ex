@@ -1,5 +1,5 @@
 defmodule Dummy.Endpoint do
-  def config(:secret_key_base, _), do: "testing123"
+  def config(:secret_key_base, nil), do: "testing123"
 
   use Phoenix.Endpoint, otp_app: :dummy
 
