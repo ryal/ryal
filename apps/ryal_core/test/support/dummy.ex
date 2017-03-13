@@ -12,7 +12,7 @@ defmodule Dummy do
 
     # Define workers and child supervisors to be supervised
     children = [
-      supervisor(Ryal.Repo, []),
+      supervisor(Dummy.Repo, []),
       supervisor(Endpoint, []),
     ]
 

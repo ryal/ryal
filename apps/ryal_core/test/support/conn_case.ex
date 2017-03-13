@@ -20,7 +20,7 @@ defmodule Ryal.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
-      alias Ryal.Repo
+      alias Dummy.Repo
 
       import Ecto
       import Ecto.Changeset
@@ -34,10 +34,10 @@ defmodule Ryal.ConnCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Ryal.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Dummy.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Ryal.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Dummy.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}

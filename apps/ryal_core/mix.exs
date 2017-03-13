@@ -16,7 +16,8 @@ defmodule Ryal.Core.Mixfile do
       package: package(),
       deps: deps(),
       aliases: aliases(),
-      compilers: compilers(Mix.env) ++ Mix.compilers
+      compilers: compilers() ++ Mix.compilers,
+      applications: applications()
     ]
   end
 
@@ -30,15 +31,14 @@ defmodule Ryal.Core.Mixfile do
     ]
   end
 
-  def application do
-    [applications: [:logger] ++ applications(Mix.env)]
+  def applications do
+    [:phoenix, :phoenix_ecto, :logger] ++ applications(Mix.env)
   end
 
-  defp applications(:test), do: [:phoenix, :phoenix_ecto, :postgrex, :ecto, :dummy]
+  defp applications(:test), do: [:postgrex, :dummy]
   defp applications(_), do: []
 
-  defp compilers(:test), do: [:phoenix]
-  defp compilers(_), do: []
+  defp compilers(), do: [:phoenix]
 
   defp deps do
     [

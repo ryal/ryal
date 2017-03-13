@@ -7,3 +7,5 @@ config :mime, :types, %{
 }
 
 config :phoenix, :format_encoders, "json-api": Poison
+
+import_config "../test/support/dummy/config/config.exs"

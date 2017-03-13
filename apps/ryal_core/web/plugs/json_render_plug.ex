@@ -8,7 +8,7 @@ defmodule Ryal.JsonRenderPlug do
   alias Ecto.Queryable
   alias Phoenix.Controller
   alias Plug.Conn
-  alias Ryal.Repo
+  alias Dummy.Repo, as: Repo
   alias Ryal.JsonApiQuery
 
   def render_collection(conn, params, collection) do
