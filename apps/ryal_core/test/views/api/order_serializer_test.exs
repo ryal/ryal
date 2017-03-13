@@ -6,10 +6,10 @@ defmodule Ryal.Api.OrderViewTest do
 
   test "renders show.json-api" do
     order = %Order{}
-      |> Order.changeset()
-      |> Repo.insert!()
+      |> Order.changeset
+      |> Repo.insert!
 
-    result = OrderView.render("show.json-api", data: order, conn: build_conn)
+    result = OrderView.render("show.json-api", data: order, conn: build_conn())
 
     assert result == %{
       "data" => %{
