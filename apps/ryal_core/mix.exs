@@ -16,29 +16,29 @@ defmodule Ryal.Core.Mixfile do
       package: package(),
       deps: deps(),
       aliases: aliases(),
-      compilers: compilers(Mix.env) ++ Mix.compilers
+      compilers: compilers() ++ Mix.compilers,
+      applications: applications()
     ]
   end
 
   defp aliases do
     [
       "db.reset": [
-        "ecto.drop",
-        "ecto.create",
-        "ecto.migrate"
+        "ecto.drop -r Dummy.Repo",
+        "ecto.create -r Dummy.Repo",
+        "ecto.migrate -r Dummy.Repo"
       ]
     ]
   end
 
-  def application do
-    [applications: [:logger] ++ applications(Mix.env)]
+  def applications do
+    [:phoenix, :phoenix_ecto, :logger, :ecto, :postgrex] ++ applications(Mix.env)
   end
 
-  defp applications(:test), do: [:phoenix, :phoenix_ecto, :postgrex, :ecto, :dummy]
+  defp applications(:test), do: [:dummy]
   defp applications(_), do: []
 
-  defp compilers(:test), do: [:phoenix]
-  defp compilers(_), do: []
+  defp compilers(), do: [:phoenix]
 
   defp deps do
     [

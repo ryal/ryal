@@ -22,6 +22,36 @@ This is basically all Ryal tries to do at the end of the day: put money in your 
 Each app inside of Ryal has a Readme which will detail exactly how to use that dependency.
 Each Ryal package has its own methods points of being configured and you should refer to those on their usage and configuration steps.
 
+## Quick Setup
+
+Add this bad boy to your `config.exs` and replace `App` with the name of your application.
+We're setting it to `:ryal_core` because that's what everything builds off of.
+
+```elixir
+config :ryal_core, repo: App.Repo
+```
+
+Now you'll want to copy over the migrations.
+
+```shell
+mix ryal.install
+```
+
+And, to mount the API (if you'll be using it), add this line to your router:
+
+```elixir
+forward "/api", Ryal.Api.Router
+```
+
+Also, please don't forget to add pagination via [Scrivener](https://github.com/drewolson/scrivener) to your `Repo`:
+
+```elixir
+defmodule App.Repo do
+  use Ecto.Repo, otp_app: :app
+  use Scrivener, page_size: 20
+end
+```
+
 ## Contributing
 
 Don't hesitate to open a PR!
