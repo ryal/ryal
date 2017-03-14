@@ -19,8 +19,6 @@ defmodule Ryal.Web do
     quote do
       use Phoenix.Controller
 
-      alias Dummy.Repo
-
       import Ecto
       import Ecto.Query
 
@@ -51,8 +49,6 @@ defmodule Ryal.Web do
   def channel do
     quote do
       use Phoenix.Channel
-
-      alias Dummy.Repo
 
       import Ecto
       import Ecto.Query
