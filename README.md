@@ -43,6 +43,15 @@ And, to mount the API (if you'll be using it), add this line to your router:
 forward "/api", Ryal.Api.Router
 ```
 
+Also, please don't forget to add pagination via [Scrivener](https://github.com/drewolson/scrivener) to your `Repo`:
+
+```elixir
+defmodule App.Repo do
+  use Ecto.Repo, otp_app: :app
+  use Scrivener, page_size: 20
+end
+```
+
 ## Contributing
 
 Don't hesitate to open a PR!
