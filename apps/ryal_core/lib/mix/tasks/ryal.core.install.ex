@@ -3,11 +3,8 @@ defmodule Mix.Tasks.Ryal.Core.Install do
 
   use Mix.Task
 
-  @project_migration_dir Mix.Ecto.migrations_path(Ryal.repo())
-
   def run(_) do
-    File.mkdir_p @project_migration_dir
-
+    File.mkdir_p project_migration_dir()
     stamp = String.to_integer timestamp()
 
     ryal_core_migrations()
@@ -31,7 +28,7 @@ defmodule Mix.Tasks.Ryal.Core.Install do
     if migration_exists?(file_name) do
       IO.puts "#{file_name} already exists."
     else
-      File.cp_r!(from, "#{@project_migration_dir}/#{file_name}")
+      File.cp_r!(from, "#{project_migration_dir()}/#{file_name}")
       IO.puts "Copied #{file_name}"
     end
   end
@@ -44,8 +41,28 @@ defmodule Mix.Tasks.Ryal.Core.Install do
   defp pad(i) when i < 10, do: << ?0, ?0 + i >>
   defp pad(i), do: to_string(i)
 
+  defp project_migration_dir do
+    dir = Mix.Ecto.migrations_path Ryal.repo()
+    marketplace? = Application.get_env(:ryal_core, :marketplace)
+    if marketplace?, do: marketplace_migrations_folder(dir), else: dir
+  end
+
+  defp marketplace_migrations_folder(dir) do
+    tenant_migrations_folder =
+      Application.get_env(:apartmentex, :migrations_folder)
+      || "tenant_migrations"
+
+    dir
+    |> String.split("/")
+    |> Enum.reverse
+    |> Enum.drop(1)
+    |> Enum.into([tenant_migrations_folder])
+    |> Enum.reverse
+    |> Enum.join("/")
+  end
+
   defp migration_exists?(file_name) do
-    @project_migration_dir
+    project_migration_dir()
     <> "/*.exs"
     |> Path.wildcard
     |> Enum.map(&get_migration_name/1)
