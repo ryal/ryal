@@ -3,7 +3,9 @@ defmodule Mix.Tasks.Ryal.Install do
 
   use Mix.Task
 
+  alias Mix.Tasks.Ryal.Core.Install, as: Core
+
   def run(args) do
-    Mix.Tasks.Ryal.Core.Install.run(args)
+    Core.run(args)
   end
 end
