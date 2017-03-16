@@ -42,7 +42,7 @@ defmodule Ryal.Core.Mixfile do
 
   defp deps do
     [
-      {:dummy, path: "test/support/dummy", only: [:dev, :test]},
+      {:dummy, path: "test/support/dummy", only: [:dev, :test], optional: true},
       {:ecto, "~> 2.1"},
       {:ex_doc, "~> 0.14", only: :dev},
       {:ja_serializer, "~> 0.12"},
