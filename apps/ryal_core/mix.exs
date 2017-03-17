@@ -5,7 +5,7 @@ defmodule Ryal.Core.Mixfile do
     [
       app: :ryal_core,
       description: "The core of Ryal.",
-      version: "0.1.0",
+      version: "0.0.1",
       build_path: "../../_build",
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
@@ -60,12 +60,11 @@ defmodule Ryal.Core.Mixfile do
     [
       maintainers: ["Ben A. Morgan"],
       licenses: ["MIT"],
-      links: %{"github" => "https://github.com/ryal/ryal"},
-      files: [
-        "lib/ryal",
-        "mix.exs",
-        "README.md"
-      ]
+      links: %{
+        "Github" => "https://github.com/ryal/ryal",
+        "Docs" => "https://hexdocs.pm/ryal_core"
+      },
+      files: ~w(config/config.exs lib priv web mix.exs LICENSE.txt README.md)
     ]
   end
 end

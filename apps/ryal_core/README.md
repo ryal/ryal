@@ -1,8 +1,8 @@
 # Ryal Core
 
+[![Hex.pm](https://img.shields.io/hexpm/v/ryal_core.svg)]()
+
 The core of Ryal; probably already guessed that...
-
-
 
 ## Installation
 
