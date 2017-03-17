@@ -24,6 +24,24 @@ Each Ryal package has its own methods points of being configured and you should 
 
 ## Quick Setup
 
+First and foremost, add Ryal to your mixfile and each umbrella application to the applications.
+
+```elixir
+# mix.exs
+
+defp applications do
+  [:ryal_core]
+end
+
+defp deps do
+  [
+    {:ryal, "~> 0.x"}
+    # or, if you're brave and trust us (which you shouldn't):
+    {:ryal, github: "ryal/ryal"}
+  ]
+end
+```
+
 Add this bad boy to your `config.exs` and replace `App` with the name of your application.
 We're setting it to `:ryal_core` because that's what everything builds off of.
 
