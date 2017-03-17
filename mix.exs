@@ -4,6 +4,7 @@ defmodule Ryal.Mixfile do
   def project do
     [
       apps_path: "apps",
+      version: "0.0.1",
       build_embedded: Mix.env == :prod,
       description: "An ecommerce library for elixir.",
       deps: deps(),

@@ -1,6 +1,7 @@
 # Ryal
 
 [![Build Status](https://travis-ci.org/ryal/ryal.svg?branch=master)](https://travis-ci.org/ryal/ryal)
+[![Hex.pm](https://img.shields.io/hexpm/v/ryal.svg)]()
 
 [**[rahy-uh l]**](http://www.dictionary.com/browse/ryal)
 

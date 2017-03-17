@@ -1,18 +1,16 @@
 # Ryal Core
 
-[![Hex.pm](https://img.shields.io/hexpm/v/ryal_core.svg)]()
+[![Hex.pm](https://img.shields.io/hexpm/v/ryal_core.svg)](https://hexdocs.pm/ryal_core/)
 
 The core of Ryal; probably already guessed that...
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
-
   1. Add `core` to your list of dependencies in `mix.exs`:
 
     ```elixir
     def deps do
-      [{:core, "~> 0.1.0"}]
+      [{:ryal_core, "~> 0.x"}]
     end
     ```
 
@@ -20,7 +18,6 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
     ```elixir
     def application do
-      [applications: [:core]]
+      [applications: [:ryal_core]]
     end
     ```
-

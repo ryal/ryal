@@ -60,10 +60,7 @@ defmodule Ryal.Core.Mixfile do
     [
       maintainers: ["Ben A. Morgan"],
       licenses: ["MIT"],
-      links: %{
-        "Github" => "https://github.com/ryal/ryal",
-        "Docs" => "https://hexdocs.pm/ryal_core"
-      },
+      links: %{"Github" => "https://github.com/ryal/ryal"},
       files: ~w(config/config.exs lib priv web mix.exs LICENSE.txt README.md)
     ]
   end
