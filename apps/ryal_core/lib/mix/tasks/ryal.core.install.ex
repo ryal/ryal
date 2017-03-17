@@ -20,8 +20,7 @@ defmodule Mix.Tasks.Ryal.Core.Install do
   defp ryal_core_migrations do
     :ryal_core
     |> :code.priv_dir
-    |> Path.join("repo/migrations")
-    |> Kernel.<>("/*.exs")
+    |> Path.join("repo/migrations/*.exs")
     |> Path.wildcard
     |> Enum.reject(&(&1 =~ ~r/ryal_core\.exs$/))
   end
