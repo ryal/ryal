@@ -26,6 +26,7 @@ defmodule Ryal.Core.Mixfile do
       "db.reset": [
         "ecto.drop -r Dummy.Repo",
         "ecto.create -r Dummy.Repo",
+        "dummy.migrate",
         "ecto.migrate -r Dummy.Repo"
       ]
     ]
