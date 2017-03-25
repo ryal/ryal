@@ -50,7 +50,7 @@ We're setting it to `:ryal_core` because that's what everything builds off of.
 config :ryal_core,
   repo: App.Repo,
   user_module: App.User,
-  user_table: "users"
+  user_table: :users
 ```
 
 Now you'll want to copy over the migrations.
@@ -80,6 +80,20 @@ Don't hesitate to open a PR!
 We're always happy to help out.
 If you have a question, a bug report, or a performance issue, we're happy to hear about it and answer it.
 Also, this project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
+
+### Development
+
+Run this command over every package that you wish to test:
+
+```shell
+MIX_ENV=test mix db.reset
+```
+
+Then run the tests:
+
+```shell
+mix test
+```
 
 ## License
 

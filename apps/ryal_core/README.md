@@ -28,4 +28,34 @@ Ryal aims to support multiple payment methods and gateways while, at the same ti
 
 ## Schema
 
-Hey guys, I've got to write this out and get some ASCII up for this. Please sit tight :)
+```
+┌───────────────────┐    ┌─────────┐    ┌───────┐
+│ PaymentTransition ╞────┤ Payment ╞────┤ Order ╞┐
+└───────────────────┘    └────╥────┘    └───────┘│
+                              │                  │
+                              │                  │
+ ┌───────────────┐    ┌───────┴──────────────┐   │
+ │ PaymentMethod ├────╡ PaymentMethodGateway │   │
+ └──────╥────────┘    └───────────╥──────────┘   │
+        │                         │              │
+        │                         │              │
+    ┌───┴──┐             ┌────────┴───────┐      │
+    │ User ├─────────────╡ PaymentGateway │      │
+    └──┬───┘             └────────────────┘      │
+       │                                         │
+       └─────────────────────────────────────────┘
+```
+
+## Development
+
+To setup the test database:
+
+```shell
+MIX_ENV=test mix db.reset
+```
+
+Then run the test command:
+
+```shell
+mix test
+```
