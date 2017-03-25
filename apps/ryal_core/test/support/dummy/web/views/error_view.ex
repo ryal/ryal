@@ -1,5 +1,5 @@
 defmodule Dummy.ErrorView do
-  use Ryal.Web, :view
+  use Dummy.Web, :view
 
   def render("404.html", _assigns) do
     "Page not found"
