@@ -1,13 +1,19 @@
 defmodule Ryal.Api.OrderControllerTest do
   use Ryal.ApiCase
 
+  alias Dummy.User
+
   alias Ryal.Api.OrderView
   alias Ryal.Order
 
   describe "index/2" do
     test "will list orders", %{conn: conn} do
+      user = %User{}
+        |> User.changeset(%{email: "ryal@example.com"})
+        |> Repo.insert!
+
       %Order{}
-      |> Order.changeset
+      |> Order.changeset(%{user_id: user.id})
       |> Repo.insert!
 
       conn = get(conn, order_path(conn, :index))

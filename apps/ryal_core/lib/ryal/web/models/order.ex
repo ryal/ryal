@@ -8,7 +8,7 @@ defmodule Ryal.Order do
 
     has_many :payments, Ryal.Payment
 
-    belongs_to :user, Ryal.Order
+    belongs_to :user, Ryal.user_module()
 
     timestamps()
   end
