@@ -47,7 +47,10 @@ Add this bad boy to your `config.exs` and replace `App` with the name of your ap
 We're setting it to `:ryal_core` because that's what everything builds off of.
 
 ```elixir
-config :ryal_core, repo: App.Repo
+config :ryal_core,
+  repo: App.Repo,
+  user_module: App.User,
+  user_table: "users"
 ```
 
 Now you'll want to copy over the migrations.
