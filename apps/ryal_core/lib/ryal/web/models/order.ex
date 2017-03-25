@@ -8,10 +8,12 @@ defmodule Ryal.Order do
 
     has_many :payments, Ryal.Payment
 
+    belongs_to :user, Ryal.Order
+
     timestamps()
   end
 
-  @required_fields ~w()a
+  @required_fields ~w(user_id)a
   @optional_fields ~w(number state total)a
 
   def changeset(struct, params \\ %{}) do

@@ -6,6 +6,9 @@ defmodule Ryal.Payment do
     field :state, :string, default: "pending"
     field :amount, :decimal
 
+    has_many :transitions, Ryal.PaymentTransition
+
+    belongs_to :payment_method_gateway, Ryal.PaymentMethodGateway
     belongs_to :order, Ryal.Order
 
     timestamps()
