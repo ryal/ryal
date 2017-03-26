@@ -9,6 +9,8 @@ defmodule Dummy.Mixfile do
       config_path: "config/config.exs",
       version: "1.0.0",
       applications: applications(),
+      build_embedded: false,
+      start_permanent: false,
       deps: [
         {:postgrex, ">= 0.13.0"},
         {:ecto, "~> 2.1"},
