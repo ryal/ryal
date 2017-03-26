@@ -13,18 +13,20 @@ Ryal aims to support multiple payment methods and gateways while, at the same ti
 ## Installation
 
   1. Add `ryal_core` to your list of dependencies in `mix.exs`:
-    ```elixir
-    def deps do
-      [{:ryal_core, "~> 0.x"}]
-    end
-    ```
+
+  ```elixir
+  def deps do
+    [{:ryal_core, "~> 0.x"}]
+  end
+  ```
 
   2. Ensure `ryal_core` is started before your application:
-    ```elixir
-    def application do
-      [applications: [:ryal_core]]
-    end
-    ```
+
+  ```elixir
+  def application do
+    [applications: [:ryal_core]]
+  end
+  ```
 
 ## Schema
 
