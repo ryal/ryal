@@ -4,6 +4,10 @@ config :mime, :types, %{
   "application/vnd.api+json" => ["json-api"]
 }
 
+config :logger,
+  level: :warn,
+  truncate: 4096
+
 config :phoenix, :format_encoders, "json-api": Poison
 
 config :dummy, Dummy.Endpoint,
