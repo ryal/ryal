@@ -16,7 +16,7 @@ defmodule Ryal.Core.Mixfile do
       package: package(),
       deps: deps(),
       aliases: aliases(),
-      compilers: compilers() ++ Mix.compilers,
+      compilers: [:phoenix] ++ Mix.compilers
     ]
   end
 
@@ -45,8 +45,6 @@ defmodule Ryal.Core.Mixfile do
   defp applications(:dev), do: [:dummy]
   defp applications(:test), do: [:dummy]
   defp applications(_), do: []
-
-  defp compilers(), do: [:phoenix]
 
   defp deps do
     [
