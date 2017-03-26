@@ -14,5 +14,16 @@ defmodule Ryal.PaymentGateway do
     has_many :payment_method_gateways, Ryal.PaymentMethodGateway
 
     belongs_to :user, Ryal.user_module()
+
+    timestamps()
+  end
+
+  @required_fields ~w(type external_id)a
+  @optional_fields ~w()a
+
+  def changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
   end
 end
