@@ -1,6 +1,7 @@
 defmodule Mix.Tasks.Dummy.Migrate do
   @moduledoc "Runs all Dummy migrations."
 
+  alias Ecto.Migrator
   alias Dummy.Repo
 
   use Mix.Task
@@ -10,6 +11,6 @@ defmodule Mix.Tasks.Dummy.Migrate do
     {:ok, _} = Repo.start_link(pool_size: 1)
 
     path = Application.app_dir(:dummy, "priv/repo/migrations")
-    Ecto.Migrator.run(Repo, path, :up, all: true)
+    Migrator.run(Repo, path, :up, all: true)
   end
 end
