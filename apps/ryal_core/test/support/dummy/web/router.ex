@@ -1,7 +1,7 @@
 defmodule Dummy.Router do
   @moduledoc false
 
-  use Ryal.Web, :router
+  use Dummy.Web, :router
 
   pipeline :browser do
     plug :accepts, ["html"]

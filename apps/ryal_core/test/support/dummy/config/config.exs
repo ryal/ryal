@@ -4,6 +4,10 @@ config :mime, :types, %{
   "application/vnd.api+json" => ["json-api"]
 }
 
+config :logger,
+  level: :warn,
+  truncate: 4096
+
 config :phoenix, :format_encoders, "json-api": Poison
 
 config :dummy, Dummy.Endpoint,
@@ -17,10 +21,13 @@ config :dummy, Dummy.Repo,
   priv: "../ryal_core/priv/repo",
   adapter: Ecto.Adapters.Postgres,
   pool: Ecto.Adapters.SQL.Sandbox,
-  database: "dummy_#{Mix.env}",
+  database: "ryal_dummy_#{Mix.env}",
   username: System.get_env("DUMMY_DB_USER") || System.get_env("USER")
 
 config :ryal_core,
   repo: Dummy.Repo,
   user_module: Dummy.User,
   user_table: :users
+
+config :stripity_stripe,
+  secret_key: "sk_test_BQokikJOvBiI2HlWgH4olfQ2"

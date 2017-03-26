@@ -16,8 +16,7 @@ defmodule Ryal.Core.Mixfile do
       package: package(),
       deps: deps(),
       aliases: aliases(),
-      compilers: compilers() ++ Mix.compilers,
-      applications: applications()
+      compilers: [:phoenix] ++ Mix.compilers
     ]
   end
 
@@ -32,31 +31,41 @@ defmodule Ryal.Core.Mixfile do
     ]
   end
 
+  def application do
+    [
+      mod: {Ryal, []},
+      applications: applications() ++ applications(Mix.env)
+    ]
+  end
+
   defp applications do
-    [:phoenix, :phoenix_ecto, :logger, :ecto, :postgrex] ++ applications(Mix.env)
+    [
+      :phoenix, :phoenix_ecto, :logger, :ecto, :postgrex, :scrivener,
+      :scrivener_ecto, :stripity_stripe
+    ]
   end
 
   defp applications(:dev), do: [:dummy]
   defp applications(:test), do: [:dummy]
   defp applications(_), do: []
 
-  defp compilers(), do: [:phoenix]
-
   defp deps do
     [
-      {:dummy, path: "test/support/dummy", only: [:dev, :test], optional: true},
       {:ecto, "~> 2.1"},
       {:ex_doc, "~> 0.14", only: :dev},
       {:ja_serializer, "~> 0.12"},
       {:phoenix, "~> 1.2.1"},
       {:phoenix_ecto, "~> 3.2.1"},
       {:postgrex, ">= 0.13.0"},
-      {:scrivener_ecto, "~> 1.1"}
+      {:scrivener_ecto, "~> 1.1"},
+
+      {:dummy, path: "test/support/dummy", only: [:dev, :test], optional: true},
+      {:stripity_stripe, github: "code-corps/stripity_stripe", optional: true}
     ]
   end
 
-  defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
-  defp elixirc_paths(_), do: ["lib", "web"]
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 
   defp package do
     [

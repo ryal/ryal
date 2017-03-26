@@ -6,7 +6,7 @@ defmodule Ryal.Mixfile do
       apps_path: "apps",
       version: "0.0.1",
       build_embedded: Mix.env == :prod,
-      description: "An ecommerce library for elixir.",
+      description: "An e-commerce library for elixir.",
       deps: deps(),
       package: package(),
       start_permanent: Mix.env == :prod
@@ -19,7 +19,10 @@ defmodule Ryal.Mixfile do
 
   defp deps do
     [
-      {:ryal_core, path: "apps/ryal_core", from_umbrella: true, env: Mix.env, manager: :mix}
+      {:ryal_core, path: "apps/ryal_core", from_umbrella: true, env: Mix.env},
+
+      {:dummy, path: "apps/ryal_core/test/support/dummy", optional: true},
+      {:stripity_stripe, github: "code-corps/stripity_stripe", optional: true}
     ]
   end
 

@@ -13,13 +13,13 @@ defmodule Ryal.JsonApiQuery do
   end
 
   defp format_filter(params, attrs) do
-    format_list((params || %{}), fn(map) ->
+    format_list (params || %{}), fn(map) ->
       {key, value} = map
       key = String.to_atom key
       value = String.split(value, ",")
 
       if Enum.member?(attrs, key), do: {key, value}
-    end)
+    end
   end
 
   def sort(collection, sort_params, view) do
@@ -33,11 +33,11 @@ defmodule Ryal.JsonApiQuery do
 
   defp format_sort(params, attrs) do
     params = String.split(params || "", ",")
-    format_list(params, fn(attr) ->
+    format_list params, fn(attr) ->
       order = if String.match?(attr, ~r/\A-/), do: :desc, else: :asc
       attr = attr |> String.replace(~r/\A-/, "") |> String.to_atom
       if Enum.member?(attrs, attr), do: {order, attr}
-    end)
+    end
   end
 
   defp attributes(view) do
