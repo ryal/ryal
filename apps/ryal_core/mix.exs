@@ -39,7 +39,10 @@ defmodule Ryal.Core.Mixfile do
   end
 
   defp applications do
-    [:phoenix, :phoenix_ecto, :logger, :ecto, :postgrex] ++ applications(Mix.env)
+    [
+      :phoenix, :phoenix_ecto, :logger, :ecto, :postgrex, :scrivener,
+      :scrivener_ecto, :stripity_stripe
+    ]
   end
 
   defp applications(:dev), do: [:dummy]
@@ -57,6 +60,7 @@ defmodule Ryal.Core.Mixfile do
       {:scrivener_ecto, "~> 1.1"},
 
       {:dummy, path: "test/support/dummy", only: [:dev, :test], optional: true},
+      {:stripity_stripe, github: "code-corps/stripity_stripe", optional: true}
     ]
   end
 

@@ -24,3 +24,6 @@ config :ryal_core,
   repo: Dummy.Repo,
   user_module: Dummy.User,
   user_table: :users
+
+config :stripity_stripe,
+  secret_key: "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
