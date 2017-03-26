@@ -1,4 +1,4 @@
-defmodule Ryal.UserGateway do
+defmodule Ryal.PaymentGateway do
   @moduledoc """
   For each gateway that an application is using, we have a profile or record of
   the `User`'s existence on that gateway. Think of it as a join table between a
@@ -7,7 +7,7 @@ defmodule Ryal.UserGateway do
 
   use Ryal.Web, :model
 
-  schema "ryal_user_gateways" do
+  schema "ryal_payment_gateways" do
     field :type, :string
 
     has_many :payment_method_gateways, Ryal.PaymentMethodGateway
