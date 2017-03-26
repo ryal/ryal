@@ -44,14 +44,15 @@ defmodule Ryal.Core.Mixfile do
 
   defp deps do
     [
-      {:dummy, path: "test/support/dummy", only: [:dev, :test], optional: true},
       {:ecto, "~> 2.1"},
       {:ex_doc, "~> 0.14", only: :dev},
       {:ja_serializer, "~> 0.12"},
       {:phoenix, "~> 1.2.1"},
       {:phoenix_ecto, "~> 3.2.1"},
       {:postgrex, ">= 0.13.0"},
-      {:scrivener_ecto, "~> 1.1"}
+      {:scrivener_ecto, "~> 1.1"},
+
+      {:dummy, path: "test/support/dummy", only: [:dev, :test], optional: true},
     ]
   end
 
