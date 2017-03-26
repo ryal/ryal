@@ -1,6 +1,6 @@
 defmodule Ryal.Payment do
   @moduledoc """
-  A payment that is made to an `Order`.
+  A payment that is made to a `Ryal.Order`.
 
   TODO: Payment documentation as this model becomes more fledged out.
   """

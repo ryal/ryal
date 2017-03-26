@@ -1,8 +1,8 @@
 defmodule Ryal.PaymentMethodGateway do
   @moduledoc """
-  A join table between a `PaymentGateway` and a `PaymentMethod`, this model is
-  responsible for connecting a payment to a user's payment method and billing it
-  under the appropriate `PaymentGateway`.
+  A join table between a `Ryal.PaymentGateway` and a `Ryal.PaymentMethod`, this
+  model is responsible for connecting a payment to a user's payment method and
+  billing it under the appropriate `Ryal.PaymentGateway`.
   """
 
   use Ryal.Web, :model
