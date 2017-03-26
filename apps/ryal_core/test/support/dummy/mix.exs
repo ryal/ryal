@@ -11,6 +11,7 @@ defmodule Dummy.Mixfile do
       applications: applications(),
       build_embedded: false,
       start_permanent: false,
+      compilers: [:phoenix] ++ Mix.compilers(),
       deps: [
         {:postgrex, ">= 0.13.0"},
         {:ecto, "~> 2.1"},
