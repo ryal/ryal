@@ -6,7 +6,7 @@ defmodule Ryal.Mixfile do
       apps_path: "apps",
       version: "0.0.1",
       build_embedded: Mix.env == :prod,
-      description: "An ecommerce library for elixir.",
+      description: "An e-commerce library for elixir.",
       deps: deps(),
       package: package(),
       start_permanent: Mix.env == :prod
