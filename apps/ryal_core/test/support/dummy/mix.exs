@@ -6,6 +6,7 @@ defmodule Dummy.Mixfile do
   def project do
     [
       app: :dummy,
+      elixirc_paths: ["lib", "web"],
       config_path: "config/config.exs",
       version: "1.0.0",
       applications: applications(),
