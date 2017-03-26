@@ -1,4 +1,14 @@
 defmodule Ryal.PaymentTransition do
+  @moduledoc """
+  Each transition that a payment goes through is logged here. Ideally, a
+  payment provider will log these as well, yet for accountants, this would act
+  as a state of reconciliation. Think: here's our copy and here's the
+  provider's copy.
+
+  You can also use this as quick information to load up in a dashboard to
+  present to both a user (payment transparency) and an admin.
+  """
+
   use Ryal.Web, :model
 
   schema "ryal_payment_transitions" do

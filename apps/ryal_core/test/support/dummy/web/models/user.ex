@@ -1,4 +1,6 @@
 defmodule Dummy.User do
+  @moduledoc false
+
   use Dummy.Web, :model
 
   schema "users" do

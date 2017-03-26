@@ -1,4 +1,11 @@
 defmodule Ryal.Order do
+  @moduledoc """
+  Orders are hubs that connect all sorts of information together such as
+  products, payments, and shipments.
+
+  TODO: Order documentation as this model becomes more fledged out.
+  """
+
   use Ryal.Web, :model
 
   schema "ryal_orders" do
