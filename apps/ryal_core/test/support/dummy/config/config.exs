@@ -20,4 +20,7 @@ config :dummy, Dummy.Repo,
   database: "dummy_#{Mix.env}",
   username: System.get_env("DUMMY_DB_USER") || System.get_env("USER")
 
-config :ryal_core, repo: Dummy.Repo
+config :ryal_core,
+  repo: Dummy.Repo,
+  user_module: Dummy.User,
+  user_table: :users

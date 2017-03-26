@@ -1,4 +1,11 @@
 defmodule Ryal.Order do
+  @moduledoc """
+  Orders are hubs that connect all sorts of information together such as
+  products, payments, and shipments.
+
+  TODO: Order documentation as this model becomes more fledged out.
+  """
+
   use Ryal.Web, :model
 
   schema "ryal_orders" do
@@ -8,10 +15,12 @@ defmodule Ryal.Order do
 
     has_many :payments, Ryal.Payment
 
+    belongs_to :user, Ryal.user_module()
+
     timestamps()
   end
 
-  @required_fields ~w()a
+  @required_fields ~w(user_id)a
   @optional_fields ~w(number state total)a
 
   def changeset(struct, params \\ %{}) do

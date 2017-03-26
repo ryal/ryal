@@ -26,6 +26,7 @@ defmodule Ryal.Core.Mixfile do
       "db.reset": [
         "ecto.drop -r Dummy.Repo",
         "ecto.create -r Dummy.Repo",
+        "dummy.migrate",
         "ecto.migrate -r Dummy.Repo"
       ]
     ]
@@ -35,6 +36,7 @@ defmodule Ryal.Core.Mixfile do
     [:phoenix, :phoenix_ecto, :logger, :ecto, :postgrex] ++ applications(Mix.env)
   end
 
+  defp applications(:dev), do: [:dummy]
   defp applications(:test), do: [:dummy]
   defp applications(_), do: []
 

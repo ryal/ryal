@@ -7,6 +7,8 @@ defmodule Ryal.Repo.Migrations.CreateRyalOrders do
       add :state, :string, default: "cart", null: false
       add :total, :decimal, null: false
 
+      add :user_id, references(Ryal.user_table()), null: false
+
       timestamps()
     end
 

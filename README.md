@@ -11,7 +11,7 @@ noun
 2. a former gold coin of Scotland, equal to 60 shillings.
 3. a former silver coin of Scotland, equal to 30 shillings.
 
-An ecommerce library for elixir.
+An e-commerce library for elixir.
 
 ## Usage
 
@@ -47,7 +47,10 @@ Add this bad boy to your `config.exs` and replace `App` with the name of your ap
 We're setting it to `:ryal_core` because that's what everything builds off of.
 
 ```elixir
-config :ryal_core, repo: App.Repo
+config :ryal_core,
+  repo: App.Repo,
+  user_module: App.User,
+  user_table: :users
 ```
 
 Now you'll want to copy over the migrations.
@@ -77,6 +80,20 @@ Don't hesitate to open a PR!
 We're always happy to help out.
 If you have a question, a bug report, or a performance issue, we're happy to hear about it and answer it.
 Also, this project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
+
+### Development
+
+Run this command over every package that you wish to test:
+
+```shell
+MIX_ENV=test mix db.reset
+```
+
+Then run the tests:
+
+```shell
+mix test
+```
 
 ## License
 

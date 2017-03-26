@@ -1,4 +1,10 @@
 defmodule Ryal.Payment do
+  @moduledoc """
+  A payment that is made to an `Order`.
+
+  TODO: Payment documentation as this model becomes more fledged out.
+  """
+
   use Ryal.Web, :model
 
   schema "ryal_payments" do
@@ -6,6 +12,9 @@ defmodule Ryal.Payment do
     field :state, :string, default: "pending"
     field :amount, :decimal
 
+    has_many :transitions, Ryal.PaymentTransition
+
+    belongs_to :payment_method_gateway, Ryal.PaymentMethodGateway
     belongs_to :order, Ryal.Order
 
     timestamps()

@@ -1,4 +1,6 @@
 defmodule Dummy.Router do
+  @moduledoc false
+
   use Ryal.Web, :router
 
   pipeline :browser do
