@@ -10,7 +10,7 @@ defmodule Ryal.PaymentMethodGateway do
   schema "ryal_payment_method_gateways" do
     has_many :payments, Ryal.Payment
 
+    belongs_to :payment_gateway, Ryal.PaymentGateway
     belongs_to :payment_method, Ryal.PaymentMethod
-    belongs_to :user_gateway, Ryal.UserGateway
   end
 end

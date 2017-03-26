@@ -6,9 +6,9 @@ defmodule Dummy.User do
   schema "users" do
     field :email, :string
 
-    has_many :payment_methods, Ryal.PaymentMethod
-    has_many :user_gateways, Ryal.UserGateway
     has_many :orders, Ryal.Order
+    has_many :payment_gateways, Ryal.PaymentGateway
+    has_many :payment_methods, Ryal.PaymentMethod
 
     timestamps()
   end
