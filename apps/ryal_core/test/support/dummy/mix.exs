@@ -9,21 +9,26 @@ defmodule Dummy.Mixfile do
       elixirc_paths: ["lib", "web"],
       config_path: "config/config.exs",
       version: "1.0.0",
-      applications: applications(),
       build_embedded: false,
       start_permanent: false,
       compilers: [:phoenix] ++ Mix.compilers(),
       deps: [
-        {:postgrex, ">= 0.13.0"},
-        {:ecto, "~> 2.1"},
+        {:postgrex, ">= 0.0.0"},
         {:phoenix, "~> 1.2.1"},
         {:phoenix_ecto, "~> 3.2.1"},
+        {:ja_serializer, "~> 0.12.0"},
         {:scrivener_ecto, "~> 1.1"}
       ]
     ]
   end
 
-  defp applications do
-    [:ecto, :postgrex, :phoenix, :phoenix_ecto, :scrivener_ecto]
+  def application do
+    [
+      mod: {Dummy, []},
+      applications: [
+        :ecto, :postgrex, :phoenix, :phoenix_ecto, :scrivener_ecto,
+        :ja_serializer
+      ]
+    ]
   end
 end
