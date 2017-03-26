@@ -17,7 +17,6 @@ defmodule Ryal.Core.Mixfile do
       deps: deps(),
       aliases: aliases(),
       compilers: compilers() ++ Mix.compilers,
-      applications: applications()
     ]
   end
 
@@ -29,6 +28,13 @@ defmodule Ryal.Core.Mixfile do
         "dummy.migrate",
         "ecto.migrate -r Dummy.Repo"
       ]
+    ]
+  end
+
+  def application do
+    [
+      mod: {Ryal, []},
+      applications: applications() ++ applications(Mix.env)
     ]
   end
 
