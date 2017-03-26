@@ -9,6 +9,7 @@ defmodule Ryal.PaymentGateway do
 
   schema "ryal_payment_gateways" do
     field :type, :string
+    field :external_id, :string
 
     has_many :payment_method_gateways, Ryal.PaymentMethodGateway
 
