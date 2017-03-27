@@ -14,7 +14,7 @@ defmodule Ryal.UserCommand do
   def create(changeset) do
     with {:ok, changeset} <- Ryal.repo.insert(changeset),
          {:ok, _payment_gateway} <-
-            PaymentGatewayCommand.create(:stripe, changeset),
+            PaymentGatewayCommand.create(:bogus, changeset),
       do: {:ok, changeset}
   end
 end

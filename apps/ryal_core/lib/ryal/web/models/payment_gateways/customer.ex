@@ -17,4 +17,13 @@ defmodule Ryal.PaymentGateway.Customer do
     with {:ok, response} <- Customers.create(params),
       do: {:ok, response.id}
   end
+
+  @doc "Simple bogus creation for an external_id."
+  def create(:bogus, _user) do
+    rand_id = :rand.uniform * 10_000_000_000
+      |> round
+      |> to_string
+
+    {:ok, rand_id}
+  end
 end
