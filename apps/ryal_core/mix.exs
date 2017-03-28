@@ -46,7 +46,7 @@ defmodule Ryal.Core.Mixfile do
   end
 
   defp applications(:dev), do: [:dummy]
-  defp applications(:test), do: [:dummy]
+  defp applications(:test), do: [:bypass, :dummy]
   defp applications(_), do: []
 
   defp deps do
@@ -58,6 +58,7 @@ defmodule Ryal.Core.Mixfile do
       {:phoenix_ecto, "~> 3.2.1"},
       {:postgrex, ">= 0.13.0"},
       {:scrivener_ecto, "~> 1.1"},
+      {:bypass, "~> 0.6", only: :test},
 
       {:dummy, path: "test/support/dummy", only: [:dev, :test], optional: true},
       {:stripity_stripe, github: "code-corps/stripity_stripe", optional: true}
