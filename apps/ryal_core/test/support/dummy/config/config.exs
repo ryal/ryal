@@ -30,4 +30,4 @@ config :ryal_core,
   user_table: :users
 
 config :stripity_stripe,
-  secret_key: "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
+  secret_key: "sk_test"
