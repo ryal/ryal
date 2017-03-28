@@ -23,6 +23,7 @@ defmodule Ryal.PaymentGateway.Customer do
     rand_id = :rand.uniform * 10_000_000_000
       |> round
       |> to_string
+      |> String.ljust(10, ?0)
 
     {:ok, rand_id}
   end

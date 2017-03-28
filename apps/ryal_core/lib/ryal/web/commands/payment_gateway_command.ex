@@ -8,8 +8,8 @@ defmodule Ryal.PaymentGatewayCommand do
   alias Ryal.PaymentGateway.Customer
 
   @doc """
-  Given a user and a gateway type, we'll create a new `PaymentGateway` for that
-  user.
+  Given a user and a gateway type, we'll create a new `Ryal.PaymentGateway` for
+  that user.
   """
   @spec create(atom, Ecto.Schema.t) ::
     {:ok, Ecto.Schema.t} | {:error, Ecto.Changeset.t}
