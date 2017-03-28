@@ -19,11 +19,12 @@ defmodule Ryal.PaymentGateway do
   end
 
   @required_fields ~w(type external_id)a
-  @optional_fields ~w()a
+  @optional_fields ~w(user_id)a
 
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, @required_fields ++ @optional_fields)
+    |> cast_assoc(:user)
     |> validate_required(@required_fields)
   end
 end
