@@ -5,6 +5,7 @@ defmodule Ryal.PaymentGatewayCommand do
   """
 
   alias Ryal.PaymentGateway
+  alias Ryal.PaymentGatewayQuery
   alias Ryal.PaymentGateway.Customer
 
   @doc """
@@ -20,5 +21,31 @@ defmodule Ryal.PaymentGatewayCommand do
          changeset <-
            PaymentGateway.changeset(%{struct | external_id: external_id}),
       do: Ryal.repo.insert(changeset)
+  end
+
+  @doc """
+  Give us a user id and we'll update the payment gateways with the user's
+  information.
+  """
+  # @spec update(integer) :: :ok
+  def update(user_id), do: update_payment_gateways(user_id, :update)
+
+  @doc """
+  If you're going to be deleting your user, then we'll delete the user on the
+  payment gateway as well.
+  """
+  # @spec delete(integer) :: []
+  def delete(user_id), do: update_payment_gateways(user_id, :delete)
+
+  defp update_payment_gateways(user_id, action) do
+    payment_gateways = user_id
+      |> PaymentGatewayQuery.by_user_id
+      |> Ryal.repo.all
+      |> Ryal.repo.preload(:user)
+
+    Enum.map payment_gateways, fn(payment_gateway) ->
+      type = String.to_atom payment_gateway.type
+      spawn_monitor Customer, action, [type, payment_gateway]
+    end
   end
 end
