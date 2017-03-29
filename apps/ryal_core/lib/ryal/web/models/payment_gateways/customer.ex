@@ -23,7 +23,7 @@ defmodule Ryal.PaymentGateway.Customer do
       do: {:ok, response.id}
   end
 
-  @spec update(atom, Ecto.Schema.t) :: {:ok, String.t}
+  @spec update(atom, Ecto.Schema.t) :: {:ok, %{}}
 
   @doc "Simple bogus updating of user attributes."
   def update(:bogus, _payment_gateway), do: {:ok, %{}}
@@ -34,7 +34,7 @@ defmodule Ryal.PaymentGateway.Customer do
     Customers.update(payment_gateway.external_id, stripe_params(user))
   end
 
-  @spec delete(atom, Ecto.Schema.t) :: {:ok, String.t}
+  @spec delete(atom, Ecto.Schema.t) :: {:ok, %{}}
 
   @doc "Simple customer deletion on a bogus gateway."
   def delete(:bogus, _payment_gateway), do: {:ok, %{}}
