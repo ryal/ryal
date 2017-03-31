@@ -13,7 +13,7 @@ defmodule Ryal.UserCommand do
   @spec create(Ecto.Changeset.t) :: {:ok, Ecto.Schema.t}
   def create(changeset) do
     with {:ok, user} <- Ryal.repo.insert(changeset),
-         {:ok, _payment_gateway} <- PaymentGatewayCommand.create(user),
+         {:ok, _default_payment_gateway} <- PaymentGatewayCommand.create(user),
       do: {:ok, user}
   end
 
