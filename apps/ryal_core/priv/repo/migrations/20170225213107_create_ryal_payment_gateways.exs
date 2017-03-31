@@ -6,7 +6,7 @@ defmodule Ryal.Repo.Migrations.CreateRyalUserGateways do
       add :type, :string, null: false
       add :external_id, :string, null: false
 
-      add :user_id, references(Ryal.user_table()), null: false
+      add :user_id, references(Ryal.user_table(), on_delete: :delete_all), null: false
 
       timestamps()
     end
