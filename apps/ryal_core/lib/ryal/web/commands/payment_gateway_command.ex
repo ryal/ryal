@@ -27,18 +27,18 @@ defmodule Ryal.PaymentGatewayCommand do
   Give us a user id and we'll update the payment gateways with the user's
   information.
   """
-  # @spec update(integer) :: :ok
-  def update(user_id), do: update_payment_gateways(user_id, :update)
+  @spec update(Ecto.Schema.t) :: []
+  def update(user), do: update_payment_gateways(user, :update)
 
   @doc """
   If you're going to be deleting your user, then we'll delete the user on the
   payment gateway as well.
   """
-  # @spec delete(integer) :: []
-  def delete(user_id), do: update_payment_gateways(user_id, :delete)
+  @spec delete(Ecto.Schema.t) :: []
+  def delete(user), do: update_payment_gateways(user, :delete)
 
-  defp update_payment_gateways(user_id, action) do
-    payment_gateways = user_id
+  defp update_payment_gateways(user, action) do
+    payment_gateways = user.id
       |> PaymentGatewayQuery.by_user_id
       |> Ryal.repo.all
       |> Ryal.repo.preload(:user)

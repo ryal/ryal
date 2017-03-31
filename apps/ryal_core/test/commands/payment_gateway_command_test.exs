@@ -26,7 +26,7 @@ defmodule Ryal.PaymentGatewayCommandTest do
     test "will update all bogus customers", %{user: user} do
       {:ok, _} = PaymentGatewayCommand.create(:bogus, user)
 
-      Enum.each PaymentGatewayCommand.update(user.id), fn({_status, ref}) ->
+      Enum.each PaymentGatewayCommand.update(user), fn({_status, ref}) ->
         assert_receive {:DOWN, ^ref, :process, _, :normal}, 500
       end
     end
@@ -36,7 +36,7 @@ defmodule Ryal.PaymentGatewayCommandTest do
     test "will delete all bogus customers", %{user: user} do
       {:ok, _} = PaymentGatewayCommand.create(:bogus, user)
 
-      Enum.each PaymentGatewayCommand.delete(user.id), fn({_status, ref}) ->
+      Enum.each PaymentGatewayCommand.delete(user), fn({_status, ref}) ->
         assert_receive {:DOWN, ^ref, :process, _, :normal}, 500
       end
     end
