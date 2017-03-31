@@ -1,4 +1,9 @@
 defmodule Ryal.JsonApiQuery do
+  @moduledoc """
+  A collection of queries for working with the JSON API format. You can filter
+  and sort data using this module.
+  """
+
   use Ryal.Web, :query
 
   def filter(collection, filter_params, view) do

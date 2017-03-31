@@ -9,9 +9,7 @@ defmodule Ryal.Base33Calculator do
     A B C D E F G H J K L M N P Q R S T U V W X Y Z
   )
 
-  @doc """
-  Makes a sequence of Base33 characters.
-  """
+  @doc "Makes a sequence of Base33 characters. "
   def generate_sequence(count \\ 9) do
     @characters
     |> Enum.shuffle

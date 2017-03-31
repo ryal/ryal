@@ -1,4 +1,8 @@
 defmodule Ryal do
+  @moduledoc """
+  The core Ryal namespace. This guy is primarily used for configuration.
+  """
+
   @repo Application.get_env(:ryal_core, :repo)
   @user_module Application.get_env(:ryal_core, :user_module)
   @user_table Application.get_env(:ryal_core, :user_table)
