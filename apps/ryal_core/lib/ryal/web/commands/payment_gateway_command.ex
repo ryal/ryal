@@ -5,7 +5,6 @@ defmodule Ryal.PaymentGatewayCommand do
   """
 
   alias Ryal.PaymentGateway
-  alias Ryal.PaymentGatewayQuery
   alias Ryal.PaymentGateway.Customer
 
   @default_gateway Application.get_env(:ryal_core, :default_payment_gateway)
@@ -49,12 +48,9 @@ defmodule Ryal.PaymentGatewayCommand do
   def delete(user), do: update_payment_gateways(user, :delete)
 
   defp update_payment_gateways(user, action) do
-    payment_gateways = user.id
-      |> PaymentGatewayQuery.by_user_id
-      |> Ryal.repo.all
-      |> Ryal.repo.preload(:user)
+    user = Ryal.repo.preload(user, :payment_gateways)
 
-    Enum.map payment_gateways, fn(payment_gateway) ->
+    Enum.map user.payment_gateways, fn(payment_gateway) ->
       type = String.to_atom payment_gateway.type
       spawn_monitor Customer, action, [type, payment_gateway]
     end
