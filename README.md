@@ -50,7 +50,9 @@ We're setting it to `:ryal_core` because that's what everything builds off of.
 config :ryal_core,
   repo: App.Repo,
   user_module: App.User,
-  user_table: :users
+  user_table: :users,
+  default_payment_gateway: :bogus,
+  fallback_payment_gateways: [:stripe, :braintree]
 ```
 
 Now you'll want to copy over the migrations.
