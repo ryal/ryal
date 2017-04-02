@@ -8,8 +8,15 @@ defmodule Ryal.Mixfile do
       build_embedded: Mix.env == :prod,
       description: "An e-commerce library for elixir.",
       deps: deps(),
+      test_coverage: [tool: ExCoveralls],
       package: package(),
-      start_permanent: Mix.env == :prod
+      start_permanent: Mix.env == :prod,
+      preferred_cli_env: [
+        "coveralls": :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -22,7 +29,9 @@ defmodule Ryal.Mixfile do
       {:ryal_core, path: "apps/ryal_core", from_umbrella: true, env: Mix.env},
 
       {:dummy, path: "apps/ryal_core/test/support/dummy", optional: true},
-      {:stripity_stripe, github: "code-corps/stripity_stripe", optional: true}
+      {:stripity_stripe, github: "code-corps/stripity_stripe", optional: true},
+
+      {:excoveralls, "~> 0.6", only: :test}
     ]
   end
 
