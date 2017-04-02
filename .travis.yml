@@ -22,4 +22,4 @@ install:
 before_script:
   - cd apps/ryal_core && mix db.reset && cd ../..
 script:
-  - mix test
+  - mix coveralls.travis
