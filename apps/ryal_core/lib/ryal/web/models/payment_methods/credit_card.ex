@@ -45,11 +45,15 @@ defmodule Ryal.PaymentMethod.CreditCard do
   end
 
   defp cast_number_to_last_digits(changeset) do
-    number = Regex.replace(~r/[[:space:]]/, changeset.changes.number, "")
-    {_, digits} = String.split_at(number, -4)
+    if Map.has_key?(changeset.changes, :number) do
+      number = Regex.replace(~r/[[:space:]]/, changeset.changes.number, "")
+      {_, digits} = String.split_at(number, -4)
 
-    changeset
-    |> put_change(:number, number)
-    |> put_change(:last_digits, digits)
+      changeset
+      |> put_change(:number, number)
+      |> put_change(:last_digits, digits)
+    else
+      changeset
+    end
   end
 end
