@@ -7,6 +7,11 @@ otp_release:
 elixir:
   - 1.4.2
 
+cache:
+  directories:
+    - _build
+    - deps
+
 addons:
   postgresql: "9.6"
 
