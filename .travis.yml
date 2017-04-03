@@ -3,7 +3,7 @@ sudo: false
 
 language: elixir
 otp_release:
-  - 19.2
+  - 19.3
 elixir:
   - 1.4.2
 
