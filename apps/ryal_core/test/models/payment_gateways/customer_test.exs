@@ -8,11 +8,8 @@ defmodule Ryal.PaymentGateway.CustomerTest do
   alias Ryal.PaymentGateway.Customer
 
   setup do
-    customer_data = "test/fixtures/stripe/customer.json"
-      |> File.read!
-      |> Poison.Parser.parse!(keys: :atoms)
-
-    [customer_data: customer_data]
+    customer_data = File.read! "test/fixtures/stripe/customer.json"
+    [customer_data: %HTTPotion.Response{body: customer_data}]
   end
 
   describe ".create/2" do
@@ -26,8 +23,8 @@ defmodule Ryal.PaymentGateway.CustomerTest do
         |> User.changeset(%{email: "ryal@example.com"})
         |> Repo.insert!
 
-      create_response = fn(_params) -> {:ok, customer_data} end
-      with_mock Stripe.Customers, [create: create_response] do
+      create_response = fn(_url, _options) -> customer_data end
+      with_mock HTTPotion, [post: create_response] do
         assert {:ok, "cus_AMUcqwTDYlbBSp"} == Customer.create(:stripe, user)
       end
     end
@@ -48,8 +45,8 @@ defmodule Ryal.PaymentGateway.CustomerTest do
         |> Repo.insert!
         |> Ryal.repo.preload(:user)
 
-      update_response = fn("cus_123", _params) -> {:ok, customer_data} end
-      with_mock Stripe.Customers, [update: update_response] do
+      update_response = fn(_url, _options) -> customer_data end
+      with_mock HTTPotion, [post: update_response] do
         assert {:ok, _response} = Customer.update(:stripe, gateway)
       end
     end
@@ -70,8 +67,7 @@ defmodule Ryal.PaymentGateway.CustomerTest do
         |> Repo.insert!
         |> Ryal.repo.preload(:user)
 
-      update_response = fn("cus_123") -> {:ok, customer_data} end
-      with_mock Stripe.Customers, [delete: update_response] do
+      with_mock HTTPotion, [delete: fn(_url) -> customer_data end] do
         assert {:ok, _response} = Customer.delete(:stripe, gateway)
       end
     end
