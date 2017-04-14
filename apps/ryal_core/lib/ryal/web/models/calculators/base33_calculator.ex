@@ -14,7 +14,7 @@ defmodule Ryal.Base33Calculator do
     @characters
     |> Enum.shuffle
     |> Enum.take(count)
-    |> Enum.join()
+    |> Enum.join
   end
 
   @doc """
