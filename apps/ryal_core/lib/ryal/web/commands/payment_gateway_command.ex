@@ -7,8 +7,8 @@ defmodule Ryal.PaymentGatewayCommand do
   alias Ryal.PaymentGateway
   alias Ryal.PaymentGateway.Customer
 
-  @default_gateway Application.get_env(:ryal_core, :default_payment_gateway)
-  @fallback_gateways Application.get_env(:ryal_core, :fallback_payment_gateways)
+  @default_gateway Map.get(Ryal.payment_gateway, :default)
+  @fallback_gateways Map.get(Ryal.payment_gateway, :fallbacks)
 
   def create(user) do
     Enum.each @fallback_gateways || [], fn(gateway_type) ->
