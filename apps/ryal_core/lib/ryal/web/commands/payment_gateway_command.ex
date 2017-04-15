@@ -34,7 +34,7 @@ defmodule Ryal.PaymentGatewayCommand do
   end
 
   @doc """
-  Give us a user id and we'll update the payment gateways with the user's
+  Give us a user and we'll update the payment gateways with the user's
   information.
   """
   @spec update(Ecto.Schema.t) :: []

@@ -26,7 +26,7 @@ defmodule Ryal.PaymentMethod do
       #Ecto.Changeset<action: nil,
        changes: %{data: #Ecto.Changeset<action: :insert,
           changes: %{cvc: "123", month: "03", name: "Bobby Orr",
-            number: "4242 4242 4242", year: "2048"}, errors: [],
+            number: "4242 4242 4242 4242", year: "2048"}, errors: [],
           data: #Ryal.PaymentMethod.CreditCard<>, valid?: true>,
           type: "credit_card"},
        errors: [], data: #Ryal.PaymentMethod<>, valid?: true>
