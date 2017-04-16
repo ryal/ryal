@@ -1,41 +1,44 @@
 defmodule Ryal.PaymentGateway.CustomerTest do
   use Ryal.ModelCase
 
-  import Mock
-
   alias Dummy.User
   alias Ryal.PaymentGateway
   alias Ryal.PaymentGateway.Customer
+  alias Plug.Conn
 
   setup do
-    customer_data = File.read! "test/fixtures/stripe/customer.json"
-    [customer_data: %HTTPotion.Response{body: customer_data}]
+    [bypass: Bypass.open]
   end
 
-  describe ".create/2" do
+  describe ".create/3" do
     test "bogus will return an id" do
       {:ok, id} = Customer.create(:bogus, %User{})
       assert String.length(id) == 10
     end
 
-    test "stripe will return an id", %{customer_data: customer_data} do
+    test "stripe will return an id", %{bypass: bypass} do
+      Bypass.expect bypass, fn(conn) ->
+        assert "/v1/customers" == conn.request_path
+        assert "POST" == conn.method
+
+        Conn.resp(conn, 201, read_fixture("stripe/customer.json"))
+      end
+
       user = %User{}
         |> User.changeset(%{email: "ryal@example.com"})
         |> Repo.insert!
 
-      create_response = fn(_url, _options) -> customer_data end
-      with_mock HTTPotion, [post: create_response] do
-        assert {:ok, "cus_AMUcqwTDYlbBSp"} == Customer.create(:stripe, user)
-      end
+      result = Customer.create(:stripe, user, bypass_endpoint(bypass))
+      assert {:ok, "cus_AMUcqwTDYlbBSp"} == result
     end
   end
 
-  describe ".update/2" do
+  describe ".update/3" do
     test "bogus can update" do
       assert {:ok, %{}} == Customer.update(:bogus, %{})
     end
 
-    test "stripe will update their customer", %{customer_data: customer_data} do
+    test "stripe will update their customer", %{bypass: bypass} do
       user = %User{}
         |> User.changeset(%{email: "ryal@example.com"})
         |> Repo.insert!
@@ -45,19 +48,24 @@ defmodule Ryal.PaymentGateway.CustomerTest do
         |> Repo.insert!
         |> Ryal.repo.preload(:user)
 
-      update_response = fn(_url, _options) -> customer_data end
-      with_mock HTTPotion, [post: update_response] do
-        assert {:ok, _response} = Customer.update(:stripe, gateway)
+      Bypass.expect bypass, fn(conn) ->
+        assert "/v1/customers/cus_123" == conn.request_path
+        assert "POST" == conn.method
+
+        Conn.resp(conn, 201, read_fixture("stripe/customer.json"))
       end
+
+      result = Customer.update(:stripe, gateway, bypass_endpoint(bypass))
+      assert {:ok, _response} = result
     end
   end
 
-  describe ".delete/2" do
+  describe ".delete/3" do
     test "bogus can delete" do
       assert {:ok, %{}} == Customer.delete(:bogus, %{})
     end
 
-    test "stripe can delete their customer", %{customer_data: customer_data} do
+    test "stripe can delete their customer", %{bypass: bypass} do
       user = %User{}
         |> User.changeset(%{email: "ryal@example.com"})
         |> Repo.insert!
@@ -67,9 +75,18 @@ defmodule Ryal.PaymentGateway.CustomerTest do
         |> Repo.insert!
         |> Ryal.repo.preload(:user)
 
-      with_mock HTTPotion, [delete: fn(_url) -> customer_data end] do
-        assert {:ok, _response} = Customer.delete(:stripe, gateway)
+      Bypass.expect bypass, fn(conn) ->
+        assert "/v1/customers/cus_123" == conn.request_path
+        assert "DELETE" == conn.method
+
+        Conn.resp(conn, 200, read_fixture("stripe/customer.json"))
       end
+
+      result = Customer.delete(:stripe, gateway, bypass_endpoint(bypass))
+      assert {:ok, _response} = result
     end
   end
+
+  defp bypass_endpoint(bypass), do: "http://localhost:#{bypass.port}"
+  defp read_fixture(fixture), do: File.read!("test/fixtures/#{fixture}")
 end

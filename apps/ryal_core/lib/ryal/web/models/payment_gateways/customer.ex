@@ -2,7 +2,7 @@ defmodule Ryal.PaymentGateway.Customer do
   @moduledoc "The Customer wrapper around multiple payment gateways."
 
   @stripe_api_key Map.get(Ryal.payment_gateway_keys, :stripe)
-  @stripe_base "https://#{@stripe_api_key}:@api.stripe.com/v1"
+  @stripe_base "https://#{@stripe_api_key}:@api.stripe.com"
 
   @spec create(atom, Ecto.Schema.t) :: {:ok, String.t}
 
@@ -19,9 +19,9 @@ defmodule Ryal.PaymentGateway.Customer do
   @doc """
   Creates a new customer on Stripe with an email and a simple description.
   """
-  def create(:stripe, user) do
-    response = @stripe_base
-      <> "/customers"
+  def create(:stripe, user, stripe_base \\ @stripe_base) do
+    response = stripe_base
+      <> "/v1/customers"
       |> HTTPotion.post([body: stripe_params(user)])
 
     with {:ok, body} <- Poison.decode(response.body),
@@ -34,11 +34,11 @@ defmodule Ryal.PaymentGateway.Customer do
   def update(:bogus, _payment_gateway), do: {:ok, %{}}
 
   @doc "Updates information on Stripe when the user data changes."
-  def update(:stripe, payment_gateway) do
+  def update(:stripe, payment_gateway, stripe_base \\ @stripe_base) do
     user = payment_gateway.user
 
-    response = @stripe_base
-      <> "/customers/#{payment_gateway.external_id}"
+    response = stripe_base
+      <> "/v1/customers/#{payment_gateway.external_id}"
       |> HTTPotion.post([body: stripe_params(user)])
 
     Poison.decode(response.body)
@@ -50,9 +50,9 @@ defmodule Ryal.PaymentGateway.Customer do
   def delete(:bogus, _payment_gateway), do: {:ok, %{}}
 
   @doc "Marks a customer account on Stripe as deleted."
-  def delete(:stripe, payment_gateway) do
-    response = @stripe_base
-      <> "/customers/#{payment_gateway.external_id}"
+  def delete(:stripe, payment_gateway, stripe_base \\ @stripe_base) do
+    response = stripe_base
+      <> "/v1/customers/#{payment_gateway.external_id}"
       |> HTTPotion.delete
 
     Poison.decode(response.body)

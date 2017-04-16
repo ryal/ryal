@@ -46,7 +46,7 @@ defmodule Ryal.Core.Mixfile do
   end
 
   defp applications(:dev), do: [:dummy]
-  defp applications(:test), do: [:mock, :dummy]
+  defp applications(:test), do: [:bypass, :dummy]
   defp applications(_), do: []
 
   defp deps do
@@ -59,7 +59,7 @@ defmodule Ryal.Core.Mixfile do
       {:postgrex, ">= 0.13.0"},
       {:scrivener_ecto, "~> 1.1"},
       {:httpotion, "~> 3.0.2"},
-      {:mock, "~> 0.2.0", only: :test},
+      {:bypass, "~> 0.6", only: :test},
 
       {:dummy, path: "test/support/dummy", only: [:dev, :test], optional: true}
     ]
