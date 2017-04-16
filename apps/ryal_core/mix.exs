@@ -16,7 +16,8 @@ defmodule Ryal.Core.Mixfile do
       package: package(),
       deps: deps(),
       aliases: aliases(),
-      compilers: [:phoenix] ++ Mix.compilers
+      compilers: [:phoenix] ++ Mix.compilers,
+      test_coverage: [tool: ExCoveralls]
     ]
   end
 
