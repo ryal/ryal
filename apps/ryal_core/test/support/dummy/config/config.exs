@@ -29,9 +29,6 @@ config :ryal_core,
   user_module: Dummy.User,
   user_table: :users,
   default_payment_gateway: :bogus,
-  payment_gateway: %{
-    default: :bogus,
-    keys: %{
-      stripe: "sk_test_123"
-    }
+  payment_gateways: %{
+    stripe: "sk_test_123"
   }

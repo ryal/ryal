@@ -53,7 +53,9 @@ config :ryal_core,
   user_module: App.User,
   user_table: :users,
   default_payment_gateway: :bogus,
-  fallback_payment_gateways: [:stripe, :braintree]
+  payment_gateways: %{
+    stripe: "sk_test_123"
+  }
 ```
 
 Now you'll want to copy over the migrations.

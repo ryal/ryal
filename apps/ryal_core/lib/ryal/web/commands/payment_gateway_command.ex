@@ -7,15 +7,15 @@ defmodule Ryal.PaymentGatewayCommand do
   alias Ryal.PaymentGateway
   alias Ryal.PaymentGateway.Customer
 
-  @default_gateway Map.get(Ryal.payment_gateway, :default)
-  @fallback_gateways Map.get(Ryal.payment_gateway, :fallbacks)
-
+  @doc "Shorthand for creating all the payment gateways relevant to a user."
+  @spec create(Ecto.Schema.t) ::
+     {:ok, Ecto.Schema.t} | {:error, Ecto.Changeset.t}
   def create(user) do
-    Enum.each @fallback_gateways || [], fn(gateway_type) ->
+    Enum.each Ryal.fallback_gateways() || [], fn(gateway_type) ->
       spawn_monitor fn -> create(gateway_type, user) end
     end
 
-    create @default_gateway, user
+    create Ryal.default_payment_gateway(), user
   end
 
   @doc """

@@ -1,7 +1,7 @@
 defmodule Ryal.PaymentGateway.Customer do
   @moduledoc "The Customer wrapper around multiple payment gateways."
 
-  @stripe_api_key Map.get(Ryal.payment_gateway_keys, :stripe)
+  @stripe_api_key Map.get(Ryal.payment_gateways(), :stripe)
   @stripe_base "https://#{@stripe_api_key}:@api.stripe.com"
 
   @spec create(atom, Ecto.Schema.t) :: {:ok, String.t}
