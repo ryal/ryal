@@ -16,7 +16,8 @@ defmodule Ryal.Core.Mixfile do
       package: package(),
       deps: deps(),
       aliases: aliases(),
-      compilers: [:phoenix] ++ Mix.compilers
+      compilers: [:phoenix] ++ Mix.compilers,
+      test_coverage: [tool: ExCoveralls]
     ]
   end
 
@@ -41,12 +42,12 @@ defmodule Ryal.Core.Mixfile do
   defp applications do
     [
       :phoenix, :phoenix_ecto, :logger, :ecto, :postgrex, :scrivener,
-      :scrivener_ecto, :stripity_stripe
+      :scrivener_ecto, :httpotion
     ]
   end
 
   defp applications(:dev), do: [:dummy]
-  defp applications(:test), do: [:mock, :dummy]
+  defp applications(:test), do: [:bypass, :dummy]
   defp applications(_), do: []
 
   defp deps do
@@ -58,10 +59,10 @@ defmodule Ryal.Core.Mixfile do
       {:phoenix_ecto, "~> 3.2.1"},
       {:postgrex, ">= 0.13.0"},
       {:scrivener_ecto, "~> 1.1"},
-      {:mock, "~> 0.2.0", only: :test},
+      {:httpotion, "~> 3.0.2"},
+      {:bypass, "~> 0.6", only: :test},
 
-      {:dummy, path: "test/support/dummy", only: [:dev, :test], optional: true},
-      {:stripity_stripe, github: "code-corps/stripity_stripe", optional: true}
+      {:dummy, path: "test/support/dummy", only: [:dev, :test], optional: true}
     ]
   end
 

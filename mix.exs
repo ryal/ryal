@@ -29,7 +29,6 @@ defmodule Ryal.Mixfile do
       {:ryal_core, path: "apps/ryal_core", from_umbrella: true, env: Mix.env},
 
       {:dummy, path: "apps/ryal_core/test/support/dummy", optional: true},
-      {:stripity_stripe, github: "code-corps/stripity_stripe", optional: true},
 
       {:excoveralls, "~> 0.6", only: :test}
     ]
