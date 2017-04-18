@@ -34,11 +34,15 @@ defmodule Ryal.PaymentGateway.StripeTest do
 
     test "will return an id for a credit card", %{bypass: bypass, user: user} do
       Bypass.expect bypass, fn(conn) ->
-        assert "/v1/credit_cards" == conn.request_path
+        assert "/v1/customers/cus_123/sources" == conn.request_path
         assert "POST" == conn.method
 
         Conn.resp(conn, 201, read_fixture("stripe/credit_card.json"))
       end
+
+      %PaymentGateway{}
+      |> PaymentGateway.changeset(%{type: "stripe", external_id: "cus_123", user_id: user.id})
+      |> Repo.insert!
 
       credit_card = %PaymentMethod{}
         |> PaymentMethod.changeset(%{
@@ -54,7 +58,7 @@ defmodule Ryal.PaymentGateway.StripeTest do
           })
         |> Ryal.repo.insert!
 
-      result = Stripe.create(:credit_card, credit_card.proxy.data, bypass_endpoint(bypass))
+      result = Stripe.create(:credit_card, credit_card, bypass_endpoint(bypass))
       assert {:ok, "card_1AA3En2BZSQJcNSQ77orWzVS"} == result
     end
   end
