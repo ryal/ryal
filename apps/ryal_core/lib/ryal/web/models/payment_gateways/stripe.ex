@@ -16,9 +16,7 @@ defmodule Ryal.PaymentGateway.Stripe do
   end
 
   defp create_object(schema, type, path, stripe_base) do
-    response = stripe_base
-      <> path
-      |> HTTPotion.post([body: params(type, schema)])
+    response = HTTPotion.post(stripe_base <> path, [body: params(type, schema)])
 
     with {:ok, body} <- Poison.decode(response.body),
       do: {:ok, body["id"]}
@@ -52,14 +50,12 @@ defmodule Ryal.PaymentGateway.Stripe do
 
   defp params(:credit_card, credit_card) do
     URI.encode_query %{
-      source: %{
-        object: "card",
-        exp_month: credit_card.month,
-        exp_year: credit_card.year,
-        number: credit_card.number,
-        cvc: credit_card.cvc,
-        name: credit_card.name
-      }
+      "source[object]" => "card",
+      "source[exp_month]" => credit_card.month,
+      "source[exp_year]" => credit_card.year,
+      "source[number]" => credit_card.number,
+      "source[cvc]" => credit_card.cvc,
+      "source[name]" => credit_card.name
     }
   end
 
