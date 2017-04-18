@@ -5,7 +5,6 @@ defmodule Ryal.PaymentGatewayCommand do
   """
 
   alias Ryal.PaymentGateway
-  alias Ryal.PaymentGateway.Customer
 
   @doc "Shorthand for creating all the payment gateways relevant to a user."
   @spec create(Ecto.Schema.t) ::
@@ -27,7 +26,7 @@ defmodule Ryal.PaymentGatewayCommand do
   def create(type, user) do
     struct = %PaymentGateway{type: Atom.to_string(type), user_id: user.id}
 
-    with {:ok, external_id} <- Customer.create(type, user),
+    with {:ok, external_id} <- payment_gateway(type).create(:customer, user),
          changeset <-
            PaymentGateway.changeset(%{struct | external_id: external_id}),
       do: Ryal.repo.insert(changeset)
@@ -52,7 +51,17 @@ defmodule Ryal.PaymentGatewayCommand do
 
     Enum.map user.payment_gateways, fn(payment_gateway) ->
       type = String.to_atom payment_gateway.type
-      spawn_monitor Customer, action, [type, payment_gateway]
+      spawn_monitor payment_gateway(type), action, [:customer, payment_gateway]
     end
+  end
+
+  defp payment_gateway(type) do
+    module_type = type
+      |> Atom.to_string
+      |> Macro.camelize
+
+    {module, []} = Code.eval_string("Ryal.PaymentGateway.#{module_type}")
+
+    module
   end
 end
