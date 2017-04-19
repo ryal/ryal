@@ -10,6 +10,7 @@ defmodule Ryal.PaymentMethod.Proxy do
   import Ecto.Changeset, only: [cast: 3]
 
   embedded_schema do
+    field :data, :map
   end
 
   @doc """
@@ -38,8 +39,15 @@ defmodule Ryal.PaymentMethod.Proxy do
     %module{} = struct
     params = Map.from_struct(struct)
 
-    module
-    |> struct(%{})
-    |> module.changeset(params)
+    proxy_changeset = module
+      |> struct(%{})
+      |> module.changeset(params)
+
+    %__MODULE__{}
+    |> cast(%{data: params}, [:data])
+    |> Map.merge(%{
+      errors: proxy_changeset.errors,
+      valid?: proxy_changeset.valid?
+    })
   end
 end

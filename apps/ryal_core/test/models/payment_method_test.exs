@@ -2,7 +2,7 @@ defmodule Ryal.PaymentMethodTest do
   use Ryal.ModelCase, async: true
 
   alias Ryal.PaymentMethod
-  alias Ryal.PaymentMethod.CreditCard
+  alias Ryal.PaymentMethod.Proxy
 
   describe ".changeset/2" do
     test "will cast the appropriate data embed" do
@@ -10,8 +10,8 @@ defmodule Ryal.PaymentMethodTest do
           type: "credit_card"
         })
 
-      %module{} = changeset.changes.data.data
-      assert module == CreditCard
+      %module{} = changeset.changes.proxy.data
+      assert module == Proxy
     end
 
     test "won't break when a type isn't specified" do

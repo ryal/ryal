@@ -37,11 +37,13 @@ defmodule Ryal.PaymentMethod do
   schema "ryal_payment_methods" do
     field :type, :string
 
-    embeds_one :data, Ryal.PaymentMethod.Proxy
+    embeds_one :proxy, Ryal.PaymentMethod.Proxy
 
     has_many :payment_method_gateways, Ryal.PaymentMethodGateway
 
     belongs_to :user, Ryal.user_module()
+
+    timestamps()
   end
 
   @required_fields ~w(type user_id)a
@@ -58,15 +60,15 @@ defmodule Ryal.PaymentMethod do
     |> cast(set_module_type(params), @required_fields)
     |> validate_required(@required_fields)
     |> validate_inclusion(:type, @payment_method_types)
-    |> cast_embed(:data, required: true)
+    |> cast_embed(:proxy, required: true)
   end
 
   defp set_module_type(%{type: type} = params)
       when type in @payment_method_types do
     module_type = Macro.camelize(type)
     {module_name, []} = Code.eval_string("Ryal.PaymentMethod.#{module_type}")
-    data = Map.get(params, :data, %{})
-    Map.put(params, :data, struct(module_name, data))
+    proxy_data = Map.get(params, :proxy, %{})
+    Map.put(params, :proxy, struct(module_name, proxy_data))
   end
 
   defp set_module_type(params), do: params
