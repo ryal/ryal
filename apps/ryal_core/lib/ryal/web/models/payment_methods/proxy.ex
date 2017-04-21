@@ -46,6 +46,7 @@ defmodule Ryal.PaymentMethod.Proxy do
     %__MODULE__{}
     |> cast(%{data: params}, [:data])
     |> Map.merge(%{
+      changes: %{data: proxy_changeset.changes},
       errors: proxy_changeset.errors,
       valid?: proxy_changeset.valid?
     })

@@ -23,7 +23,7 @@ defmodule Ryal.PaymentMethod.CreditCardTest do
     test "will create a new credit card changeset", %{attrs: params} do
       changeset = CreditCard.changeset(%CreditCard{}, params)
 
-      assert changeset.changes.number == "4242424242424242"
+      refute Map.has_key?(changeset.changes, :number)
       assert changeset.changes.last_digits == "4242"
       assert changeset.valid?
     end
@@ -32,7 +32,7 @@ defmodule Ryal.PaymentMethod.CreditCardTest do
       params = %{params | number: "4242 4242  4242  4242"}
       changeset = CreditCard.changeset(%CreditCard{}, params)
 
-      assert changeset.changes.number == "4242424242424242"
+      refute Map.has_key?(changeset.changes, :number)
       assert changeset.changes.last_digits == "4242"
       assert changeset.valid?
     end
@@ -47,7 +47,7 @@ defmodule Ryal.PaymentMethod.CreditCardTest do
       }
       changeset = CreditCard.changeset(%CreditCard{}, params)
 
-      assert changeset.changes.number == "4242424242424242"
+      refute Map.has_key?(changeset.changes, :number)
       assert changeset.changes.last_digits == "4242"
       assert changeset.valid?
     end
