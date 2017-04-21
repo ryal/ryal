@@ -42,6 +42,7 @@ defmodule Ryal.PaymentMethod.CreditCard do
     |> validate_required(@required_fields)
     |> cast_number_to_last_digits
     |> validate_required([:last_digits])
+    |> put_change(:cvc, nil)
   end
 
   defp cast_number_to_last_digits(changeset) do
@@ -50,7 +51,7 @@ defmodule Ryal.PaymentMethod.CreditCard do
       {_, digits} = String.split_at(number, -4)
 
       changeset
-      |> put_change(:number, number)
+      |> put_change(:number, nil)
       |> put_change(:last_digits, digits)
     else
       changeset

@@ -10,7 +10,7 @@ defmodule Ryal.PaymentGateway.Stripe do
   def create(type, schema, stripe_base \\ @stripe_base)
 
   def create(:credit_card, payment_method, stripe_base) do
-    credit_card_data = payment_method.proxy.data
+    credit_card_data = payment_method.ephemeral
     customer_id = payment_method.user_id
       |> PaymentGatewayQuery.get_external_id("stripe")
       |> Ryal.repo.one!
