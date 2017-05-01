@@ -3,7 +3,7 @@ defmodule Ryal.Mixfile do
 
   def project do
     [
-      apps_path: "apps",
+      app: :ryal,
       version: "0.0.1",
       build_embedded: Mix.env == :prod,
       description: "An e-commerce library for elixir.",
@@ -26,9 +26,7 @@ defmodule Ryal.Mixfile do
 
   defp deps do
     [
-      {:ryal_core, path: "apps/ryal_core", from_umbrella: true, env: Mix.env},
-
-      {:dummy, path: "apps/ryal_core/test/support/dummy", optional: true},
+      {:ryal_core, github: "ryal/ryal_core"},
 
       {:excoveralls, "~> 0.6", only: :test}
     ]
