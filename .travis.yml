@@ -20,8 +20,5 @@ install:
   - mix local.rebar --force
   - mix do deps.get, compile
 
-before_script:
-  - mix db.reset
-
 script:
-  - mix coveralls.travis
+  - mix test
