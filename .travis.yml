@@ -19,7 +19,6 @@ install:
   - mix local.hex --force
   - mix local.rebar --force
   - mix do deps.get, compile
-before_script:
-  - cd apps/ryal_core && mix db.reset && cd ../..
+
 script:
-  - mix coveralls.travis --umbrella
+  - mix test
