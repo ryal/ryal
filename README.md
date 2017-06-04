@@ -100,6 +100,19 @@ Then run the tests:
 mix test
 ```
 
+## Donations
+
+<img src="/ryal/ryal/raw/master/qr_code.png" alt="1QHvBNzquxbczTwmdhr2cLCgcHrjWtFcD1" align="right" />
+
+We currently accept donations with Bitcoin.
+If you're really interested in this project and would love to see the development accelerate, you can always send us a message via email or on the Elixir Slack and let us know what you need.
+By providing Bitcoin, the neurons in our brain suddenly begin feeling more interested.
+Wallet QR code and address:
+
+```
+1QHvBNzquxbczTwmdhr2cLCgcHrjWtFcD1
+```
+
 ## License
 
 This package is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
