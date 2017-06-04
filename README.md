@@ -102,7 +102,7 @@ mix test
 
 ## Donations
 
-<img src="/ryal/ryal/raw/master/qr_code.png" alt="1QHvBNzquxbczTwmdhr2cLCgcHrjWtFcD1" align="right" />
+<img src="https://raw.githubusercontent.com/ryal/ryal/master/qr_code.png" alt="1QHvBNzquxbczTwmdhr2cLCgcHrjWtFcD1" align="right" />
 
 We currently accept donations with Bitcoin.
 If you're really interested in this project and would love to see the development accelerate, you can always send us a message via email or on the Elixir Slack and let us know what you need.
