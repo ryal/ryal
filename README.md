@@ -44,18 +44,20 @@ defp deps do
 end
 ```
 
-Add this bad boy to your `config.exs` and replace `App` with the name of your application.
-We're setting it to `:ryal_core` because that's what everything builds off of.
+Add this bad boy to your `config.exs` and replace `App` with the name of your
+application. We're setting it to `:ryal_core` because that's what everything
+builds off of. Please see `Ryal.Core` for an explanation on the keys provided in
+this configuration.
 
 ```elixir
 config :ryal_core,
   repo: App.Repo,
   user_module: App.User,
   user_table: :users,
-  default_payment_gateway: :bogus,
-  payment_gateways: %{
-    stripe: "sk_test_123"
-  }
+  payment_gateways: [
+    %{type: :bogus},
+    %{type: :stripe, token: "sk_test_123"}
+  ]
 ```
 
 Now you'll want to copy over the migrations.
